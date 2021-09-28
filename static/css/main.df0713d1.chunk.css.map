@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/todo/todo.css"],"names":[],"mappings":"AAAA,cACE,YAAa,CACb,6BACF,CAEA,MACE,YAAa,CACb,qBACF,CACA,QACE,WACF","file":"main.df0713d1.chunk.css","sourcesContent":[".main-content {\n  display: grid;\n  grid-template-columns: 3fr 7fr;\n}\n\n.form {\n  display: flex;\n  flex-direction: column;\n}\n.form > * {\n  padding: 5px;\n}\n"]}
