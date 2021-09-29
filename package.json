@@ -2,10 +2,12 @@
   "name": "class-32-solution-todo",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://JayaDeHart.github.io/todo-app",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
     "@blueprintjs/core": "^3.50.3",
+    "gh-pages": "^3.2.3",
     "node-sass": "^6.0.1",
     "react": "17.0.2",
     "react-bootstrap": "^1.6.1",
@@ -21,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [

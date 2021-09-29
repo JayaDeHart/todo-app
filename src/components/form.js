@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from '@blueprintjs/core';
+import UserOptions from './UserOptions';
 
 function Form(props) {
   const { handleChange, handleSubmit } = props;
@@ -42,6 +43,7 @@ function Form(props) {
       <label>
         <Button type="submit">Add Item</Button>
       </label>
+      <UserOptions />
     </form>
   );
 }
