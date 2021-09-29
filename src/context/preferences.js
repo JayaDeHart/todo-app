@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const PreferencesContext = React.createContext();
 
 function Preferences(props) {
-  const state = {
-    showCompleted: true,
-    pagination: 4,
+  const [pagination, setPagination] = useState(
+    parseInt(localStorage.getItem('pagination')) || 4
+  );
+  const [showCompleted, setShowCompleted] = useState(
+    localStorage.getItem('showComp') || true
+  );
+  console.log(localStorage.getItem('showComp'));
+  let state = {
+    setPagination,
+    setShowCompleted,
+    showCompleted,
+    pagination,
     sortBy: 'assigned',
   };
 

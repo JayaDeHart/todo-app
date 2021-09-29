@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Card, Elevation, Button } from '@blueprintjs/core';
+import { PreferencesContext } from '../context/preferences';
 
 function Items(props) {
   const { toggleComplete, list } = props;
+  const prefContext = useContext(PreferencesContext);
+  const { showCompleted } = prefContext;
 
   return (
     <div className="todo-items">

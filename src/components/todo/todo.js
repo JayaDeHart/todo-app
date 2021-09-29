@@ -5,6 +5,7 @@ import Form from '../form';
 import Items from '../items';
 import { v4 as uuid } from 'uuid';
 import { PreferencesContext } from '../../context/preferences';
+import UserOptions from '../UserOptions.js';
 import './todo.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
 
@@ -14,11 +15,10 @@ const ToDo = () => {
   const { handleChange, handleSubmit } = useForm(addItem);
   const [page, setPage] = useState(0);
   const prefContext = useContext(PreferencesContext);
-  const { pagination } = prefContext;
+  const { pagination, showCompleted } = prefContext;
   const [pagPosts, setPagPosts] = useState([]);
 
   function addItem(item) {
-    console.log(item);
     item.id = uuid();
     item.complete = false;
     setList([...list, item]);
@@ -51,8 +51,13 @@ const ToDo = () => {
 
     let end = page * pagination + pagination;
 
-    setPagPosts(list.slice(start, end));
-  }, [list, page]);
+    if (!showCompleted) {
+      let filtered = list.filter((item) => !item.complete);
+      setPagPosts(filtered.slice(start, end));
+    } else {
+      setPagPosts(list.slice(start, end));
+    }
+  }, [list, page, pagination, showCompleted]);
 
   function goNext() {
     setPage((prev) => prev + 1);
@@ -69,8 +74,8 @@ const ToDo = () => {
 
         <div>
           <Items list={pagPosts} toggleComplete={toggleComplete} />
-          {list.length > 4 && <button onClick={goNext}>Next</button>}
-          {list.length > 4 && page > 0 && (
+          {list.length > pagination && <button onClick={goNext}>Next</button>}
+          {list.length > pagination && page > 0 && (
             <button onClick={goBack}>Previous</button>
           )}
           <div>{page}</div>
