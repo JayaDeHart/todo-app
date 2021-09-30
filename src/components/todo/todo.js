@@ -5,7 +5,7 @@ import Form from '../form';
 import Items from '../items';
 import { v4 as uuid } from 'uuid';
 import { PreferencesContext } from '../../context/preferences';
-import UserOptions from '../UserOptions.js';
+import { AuthContext } from '../../context/auth';
 import './todo.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
 
@@ -17,6 +17,7 @@ const ToDo = () => {
   const prefContext = useContext(PreferencesContext);
   const { pagination, showCompleted } = prefContext;
   const [pagPosts, setPagPosts] = useState([]);
+  const authContext = useContext(AuthContext);
 
   function addItem(item) {
     item.id = uuid();
@@ -71,6 +72,7 @@ const ToDo = () => {
       <Header incomplete={incomplete} />
       <div className="main-content">
         <Form handleSubmit={handleSubmit} handleChange={handleChange} />
+        <div>{JSON.stringify(authContext)}</div>
 
         <div>
           <Items list={pagPosts} toggleComplete={toggleComplete} />
